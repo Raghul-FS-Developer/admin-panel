@@ -12,7 +12,7 @@ function Datatable({ title, link }) {
 
     useEffect(() => {
      getData();
-    }, [title]);
+    }, []);
     const getData = async () => {
       const res = await axios.get(`${db}getuser`);
       setData(res.data);
@@ -81,7 +81,7 @@ function Datatable({ title, link }) {
     useEffect(() => {
       
       getData();
-    }, [title]);
+    }, []);
 
     const getData = async () => {
       const res = await axios.get(`${db}getproduct`);

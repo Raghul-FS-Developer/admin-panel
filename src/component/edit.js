@@ -6,6 +6,8 @@ import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUpload
 import axios from 'axios'
 import db from '../db'
 import { useNavigate, useParams } from 'react-router-dom'
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Edit({ title}) {
    
 
@@ -56,19 +58,27 @@ const EditUser =()=>{
 
   const handleSubmit=async(e)=>{
     e.preventDefault()
+    toast.loading("Updating...")
     const res = await axios.put(`${db}edituser/${params.userId}`,formdata)
     if(res.status === 200){
       nav('/users')
+
     }
 
   }
 
   const handleImage = (e)=>{
+ 
+    if(e.target.files[0].size <= 10356302 ){
     setFile(e.target.files[0]);
     setImage('')
+    }else{
+   toast.error("Image size should be less than 10 mb")
+    }
   }
   return (
     <div className='new'>
+      <ToastContainer/>
       <Sidebar/>
       <div  className='newContainer'>
         <Navbar/>
@@ -176,12 +186,18 @@ const EditProduct =()=>{
 
 
 const handleImage = (e)=>{
+  if(e.target.files[0].size <= 2356302 ){
+    
     setFile(e.target.files[0]);
     setImage('')
+  }else{
+    toast.error("Image size should be less than 2 mb")
+  }
   }
 
   const handleSubmit=async(e)=>{
     e.preventDefault()
+    toast.loading("Updating...")
     const res = await axios.put(`${db}editproduct/${params.productId}`,formdata)
     if(res.status === 200){
       nav('/products')
@@ -190,6 +206,7 @@ const handleImage = (e)=>{
   }
   return (
     <div className='new'>
+      <ToastContainer/>
       <Sidebar/>
       <div  className='newContainer'>
         <Navbar/>

@@ -10,6 +10,7 @@ Packages I Used..!<br/>
 
 axios<br/>
 react-router-dom<br/>
+react-toastify<br/>
 react-circular-progressbar<br/>
 recharts<br/>
 sass<br/>
